@@ -27,7 +27,6 @@ const MAPPING = {
   'wrench': 'build',
   'doc.text': 'description',
   'magnifyingglass': 'search',
-}
 } as IconMapping;
 
 /**
