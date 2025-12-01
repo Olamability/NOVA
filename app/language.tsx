@@ -4,7 +4,7 @@ import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const LANGUAGES = [
-  { key: 'en', label: 'English' },
+  { key: 'en', label: 'English'  },
   { key: 'yo', label: 'Yoruba' },
   { key: 'ig', label: 'Igbo' },
   { key: 'ha', label: 'Hausa' },
@@ -58,11 +58,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: 'bold',
-    color: '#184D3A',
+    color: '#141515',
     textAlign: 'center',
-    marginBottom: 32,
+    marginTop: 45,
+    marginBottom: 61,
     lineHeight: 36,
   },
   option: {

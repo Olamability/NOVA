@@ -1,13 +1,14 @@
 import { router } from 'expo-router';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function UserType() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <Text style={styles.title}>Join NOVA</Text>
-        <Text style={styles.subtitle}>Choose how you want to get started</Text>
+        <Image source={require('@/assets/images/icon.png')} 
+        style={styles.languageIcon}/>
+        <Text style={styles.subtitle}>Please choose how you want to get started</Text>
 
         <View style={styles.optionsContainer}>
           <TouchableOpacity
@@ -18,7 +19,7 @@ export default function UserType() {
             <View style={styles.iconContainer}>
               <Text style={styles.icon}>🛍️</Text>
             </View>
-            <Text style={styles.optionTitle}>I&apos;m a Buyer</Text>
+            <Text style={styles.optionTitle}>Buyer</Text>
             <Text style={styles.optionDescription}>
               Browse and shop from thousands of products
             </Text>
@@ -32,7 +33,7 @@ export default function UserType() {
             <View style={styles.iconContainer}>
               <Text style={styles.icon}>🏪</Text>
             </View>
-            <Text style={styles.optionTitle}>I&apos;m a Seller</Text>
+            <Text style={styles.optionTitle}>Seller</Text>
             <Text style={styles.optionDescription}>
               Start selling and grow your business
             </Text>
@@ -63,24 +64,24 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     alignItems: 'center',
   },
-  title: {
+  languageIcon: {
     fontSize: 32,
     fontWeight: 'bold',
     color: '#184D3A',
-    marginBottom: 8,
+    marginBottom: 15,
   },
   subtitle: {
     fontSize: 16,
     color: '#687076',
     textAlign: 'center',
-    marginBottom: 48,
+    marginBottom: 19,
   },
   optionsContainer: {
     width: '100%',
     gap: 16,
   },
   optionCard: {
-    backgroundColor: '#fff',
+    backgroundColor: '#004938',
     borderRadius: 24,
     padding: 32,
     alignItems: 'center',
@@ -105,14 +106,15 @@ const styles = StyleSheet.create({
   optionTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#184D3A',
+    color: '#EFCB3F',
     marginBottom: 8,
   },
   optionDescription: {
     fontSize: 14,
-    color: '#687076',
+    color: '#ffffff',
     textAlign: 'center',
     lineHeight: 20,
+    marginTop: 15,
   },
   loginLink: {
     marginTop: 32,
