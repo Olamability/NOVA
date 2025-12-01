@@ -13,10 +13,13 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { useAuth } from '@/src/context/AuthContext';
+
 export default function Register() {
   const params = useLocalSearchParams();
   const userType = params.type as string || 'buyer';
   const isSeller = userType === 'seller';
+  const authContext = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -45,6 +48,17 @@ export default function Register() {
     }
 
     // TODO: Implement actual registration logic
+    const userData = {
+      email,
+      fullName,
+      phoneNumber,
+      userType,
+      businessName: isSeller ? businessName : undefined,
+      businessAddress: isSeller ? businessAddress : undefined,
+      id: Date.now().toString(),
+    };
+    authContext?.setUser(userData);
+
     Alert.alert('Success', 'Registration successful!', [
       { text: 'OK', onPress: () => router.replace('/(tabs)') },
     ]);

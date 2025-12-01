@@ -1,6 +1,9 @@
+import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+
+import { useAuth } from '@/src/context/AuthContext';
 
 const MENU_ITEMS = [
   { id: '1', title: 'Edit Profile', icon: '👤' },
@@ -11,6 +14,27 @@ const MENU_ITEMS = [
 ];
 
 export default function ProfileScreen() {
+  const authContext = useAuth();
+  const user = authContext?.user;
+
+  const handleLogout = () => {
+    Alert.alert(
+      'Logout',
+      'Are you sure you want to logout?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Logout',
+          style: 'destructive',
+          onPress: () => {
+            authContext?.setUser(null);
+            router.replace('/user-type');
+          },
+        },
+      ]
+    );
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <StatusBar style="dark" />
@@ -21,10 +45,12 @@ export default function ProfileScreen() {
       >
         <View style={styles.header}>
           <View style={styles.avatar}>
-            <Text style={styles.avatarText}>U</Text>
+            <Text style={styles.avatarText}>
+              {user?.fullName?.charAt(0) || 'U'}
+            </Text>
           </View>
-          <Text style={styles.name}>User Name</Text>
-          <Text style={styles.email}>user@example.com</Text>
+          <Text style={styles.name}>{user?.fullName || 'User Name'}</Text>
+          <Text style={styles.email}>{user?.email || 'user@example.com'}</Text>
         </View>
 
         <View style={styles.menu}>
@@ -41,7 +67,11 @@ export default function ProfileScreen() {
           ))}
         </View>
 
-        <TouchableOpacity style={styles.logoutButton} activeOpacity={0.8}>
+        <TouchableOpacity
+          style={styles.logoutButton}
+          activeOpacity={0.8}
+          onPress={handleLogout}
+        >
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </ScrollView>

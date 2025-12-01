@@ -1,4 +1,4 @@
-import { createContext, Dispatch, SetStateAction, useContext, useState, ReactNode } from "react";
+import { createContext, Dispatch, SetStateAction, useContext, useState, ReactNode } from 'react';
 
 type AuthContextType = {
   user: any;

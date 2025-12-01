@@ -12,16 +12,23 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { useAuth } from '@/src/context/AuthContext';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const authContext = useAuth();
 
   const handleLogin = () => {
     if (!email || !password) {
       Alert.alert('Error', 'Please fill in all fields');
       return;
     }
+    
     // TODO: Implement actual login logic
+    const userData = { email, id: Date.now().toString() };
+    authContext?.setUser(userData);
+    
     Alert.alert('Success', 'Login successful!', [
       { text: 'OK', onPress: () => router.replace('/(tabs)') },
     ]);
