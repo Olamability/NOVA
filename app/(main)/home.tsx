@@ -56,7 +56,7 @@ export default function HomeScreen() {
         {/* Green Header with Logo and Icons */}
         <View style={[styles.header, { backgroundColor: headerBg }]}>  
           <View style={styles.headerRow}>
-            <Image source={require('@/assets/images/logo.png')} style={styles.logo} />
+            <Image source={require('@/assets/images/NOVA.png')} style={styles.logo} />
             <View style={styles.searchBarContainer}>
               <IconSymbol name="magnifyingglass" color={'#687076'} size={18} />
               <TextInput
@@ -76,7 +76,7 @@ export default function HomeScreen() {
               <Text style={styles.promoButtonText}>Track Order</Text>
             </TouchableOpacity>
           </View>
-          <Image source={require('@/assets/images/promo-mango.png')} style={styles.promoImage} />
+          <Image source={require('@/assets/images/Easy shop 1.png')} style={styles.promoImage} />
         </View>
 
         {/* Quick Actions */}
