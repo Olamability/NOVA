@@ -37,7 +37,7 @@ export default function Language() {
       />
       <TouchableOpacity
         style={styles.button}
-        onPress={() => router.replace('/(tabs)')}
+        onPress={() => router.replace('/user-type')}
         activeOpacity={0.9}
       >
         <Text style={styles.buttonText}>Continue</Text>

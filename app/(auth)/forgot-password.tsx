@@ -12,19 +12,20 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function Login() {
+export default function ForgotPassword() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    if (!email || !password) {
-      Alert.alert('Error', 'Please fill in all fields');
+  const handleResetPassword = () => {
+    if (!email) {
+      Alert.alert('Error', 'Please enter your email address');
       return;
     }
-    // TODO: Implement actual login logic
-    Alert.alert('Success', 'Login successful!', [
-      { text: 'OK', onPress: () => router.replace('/(tabs)') },
-    ]);
+    // TODO: Implement actual password reset logic
+    Alert.alert(
+      'Success',
+      'Password reset link has been sent to your email!',
+      [{ text: 'OK', onPress: () => router.back() }]
+    );
   };
 
   return (
@@ -34,8 +35,17 @@ export default function Login() {
         style={styles.container}
       >
         <View style={styles.content}>
-          <Text style={styles.title}>Welcome Back</Text>
-          <Text style={styles.subtitle}>Log in to continue</Text>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => router.back()}
+          >
+            <Text style={styles.backButtonText}>← Back</Text>
+          </TouchableOpacity>
+
+          <Text style={styles.title}>Forgot Password?</Text>
+          <Text style={styles.subtitle}>
+            Enter your email address and we&apos;ll send you a link to reset your password
+          </Text>
 
           <View style={styles.form}>
             <View style={styles.inputGroup}>
@@ -51,38 +61,13 @@ export default function Login() {
               />
             </View>
 
-            <View style={styles.inputGroup}>
-              <Text style={styles.label}>Password</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Enter your password"
-                placeholderTextColor="#B0B0B0"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
-              />
-            </View>
-
             <TouchableOpacity
-              onPress={() => router.push('/(auth)/forgot-password')}
-            >
-              <Text style={styles.forgotPassword}>Forgot Password?</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.loginButton}
-              onPress={handleLogin}
+              style={styles.resetButton}
+              onPress={handleResetPassword}
               activeOpacity={0.8}
             >
-              <Text style={styles.loginButtonText}>Log In</Text>
+              <Text style={styles.resetButtonText}>Send Reset Link</Text>
             </TouchableOpacity>
-
-            <View style={styles.footer}>
-              <Text style={styles.footerText}>Don&apos;t have an account? </Text>
-              <TouchableOpacity onPress={() => router.back()}>
-                <Text style={styles.signUpText}>Sign Up</Text>
-              </TouchableOpacity>
-            </View>
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -101,7 +86,15 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     paddingHorizontal: 24,
-    paddingTop: 60,
+    paddingTop: 20,
+  },
+  backButton: {
+    marginBottom: 24,
+  },
+  backButtonText: {
+    fontSize: 16,
+    color: '#184D3A',
+    fontWeight: '600',
   },
   title: {
     fontSize: 32,
@@ -113,12 +106,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#687076',
     marginBottom: 40,
+    lineHeight: 24,
   },
   form: {
     flex: 1,
   },
   inputGroup: {
-    marginBottom: 20,
+    marginBottom: 24,
   },
   label: {
     fontSize: 16,
@@ -135,37 +129,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E0E0E0',
   },
-  forgotPassword: {
-    fontSize: 14,
-    color: '#184D3A',
-    fontWeight: '600',
-    textAlign: 'right',
-    marginBottom: 24,
-  },
-  loginButton: {
+  resetButton: {
     backgroundColor: '#184D3A',
     borderRadius: 12,
     padding: 16,
     alignItems: 'center',
-    marginBottom: 24,
   },
-  loginButtonText: {
+  resetButtonText: {
     color: '#FFD600',
     fontSize: 18,
-    fontWeight: 'bold',
-  },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  footerText: {
-    fontSize: 14,
-    color: '#687076',
-  },
-  signUpText: {
-    fontSize: 14,
-    color: '#184D3A',
     fontWeight: 'bold',
   },
 });
