@@ -15,9 +15,31 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+        {/* Splash screen */}
+        <Stack.Screen
+          name="splash"
+          options={{ headerShown: false }}
+        />
+
+        {/* Onboarding screens */}
+        <Stack.Screen
+          name="onboarding"
+          options={{ headerShown: false }}
+        />
+
+        {/* Language selection */}
+        <Stack.Screen
+          name="language"
+          options={{ headerShown: false }}
+        />
+
+        {/* Tabs layout (main app) */}
+        <Stack.Screen
+          name="(tabs)"
+          options={{ headerShown: false }} // Hide stack header for tabs
+        />
       </Stack>
+
       <StatusBar style="auto" />
     </ThemeProvider>
   );
